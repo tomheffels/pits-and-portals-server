@@ -1,4 +1,3 @@
-
 const generateGame = () => {
   const numbers = new Array(1000)
   for (let i = 0; i < numbers.length; i++) {
@@ -22,20 +21,22 @@ const generateGame = () => {
   portals.map(portal => console.log(`portal at square ${portal[0]}, you get beamed up to square ${portal[1]}`)).slice(0, 7)
   console.log(`number of pits: ${pits.length}, number of portals: ${portals.length}`)
   
-  dispatchBoard(pits, portals)
+  return {pits: pits, portals: portals}
 }
 
-function dispatchBoard () {
-const action = {
-  type: 'board',
-  pits,
-  portals
-}
-io.emit('action', action)
-}
+// function dispatchBoard () {
+//   const action = {
+//     type: 'board',
+//     pits,
+//     portals
+//   }
+//   io.emit('action', action)
+// }
 
-app.put('/game/:id', (req, res, next) => {
-const {pits, portals} = req.body
-Game
-.findByPk(req.params.id)
-})
+// app.put('/game/:id', (req, res, next) => {
+//   const {pits, portals} = req.body
+//   Game
+//     .findByPk(req.params.id)
+// })
+
+module.exports = generateGame
