@@ -4,23 +4,19 @@ const boardRouter = require('./Board/routes')
 const socketIo = require('socket.io')
 
 
-
 const app = express()
-
-const server = app.listen(4000)
+const port = 4000
+const server = app.listen(port, () => console.log(`listening on port ${port}...`))
 const io = socketIo.listen(server)
 
 app
 .use(bodyParser.json())
 .use(boardRouter)
 
-
 io.on(
   'connection',
   client => {
     console.log('client.id test:', client.id)
-
-    dispatch(messages)
 
     client.on(
       'disconnect',
