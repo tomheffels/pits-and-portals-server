@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../db')
 const Player = require('../Players/model')
+const Avatar = require ('../Avatars/model')
 
 const Participant = sequelize.define ('participants', {
   playerId : {
@@ -13,7 +14,11 @@ const Participant = sequelize.define ('participants', {
   },
   score : {
     type: Sequelize.NUMBER,
-  }
+  },
+avatarId :{
+  type: Sequelize.INTEGER,
+  field: 'avatar_id'
+}
 },
 {
   timestamps: false,
@@ -21,4 +26,5 @@ const Participant = sequelize.define ('participants', {
 })
 
 Participant.belongsTo(Player)
+Participant.belongsTo(Avatar)
 module.exports = Participant

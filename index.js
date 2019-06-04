@@ -7,12 +7,13 @@ const socketIo = require('socket.io')
 
 const app = express()
 
-const port = process.env.PORT || 4000
-const io = socketIo.listen(port)
+const server = app.listen(4000)
+const io = socketIo.listen(server)
+
 app
 .use(bodyParser.json())
 .use(boardRouter)
-.listen(port, () => console.log(`Listening on port ${port}`))
+
 
 io.on(
   'connection',

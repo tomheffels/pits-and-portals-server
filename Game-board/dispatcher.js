@@ -9,7 +9,8 @@ const action = {
 io.emit('action', action)
 }
 
-app.put('/game/:id', (req, res, next) => 
+app.put('/game/:id', (req, res, next) => {
+const {board} = req.body
 Game
 .findByPk(req.params.id)
 )
