@@ -9,12 +9,10 @@ const Player = sequelize.define('players',
     allowNUll: false,
     field: 'user_name'
   },
-  email: {
+  clientId: {
     type: Sequelize.STRING,
     allowNull: false,
-    validate: {
-      isEmail: true
-    }
+    field: 'client_id',
   },
   password: {
     type: Sequelize.STRING,

@@ -11,7 +11,7 @@ const Participant = sequelize.define ('participants', {
     type: Sequelize.INTEGER,
     field: 'game_id'
   },
-  score : {
+  position : {
     type: Sequelize.NUMBER,
   }
 },

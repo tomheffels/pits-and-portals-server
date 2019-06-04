@@ -2,12 +2,12 @@ const Sequelize = require('sequelize')
 const sequelize = require('../db')
 
 const Board = sequelize.define ('Board', {
-  X: {
+  in: {
     type: Sequelize.INTEGER,
     allowNull: false
   },
 
-  Y: {
+  out: {
     type: Sequelize.INTEGER,
     allowNull: false
   }
