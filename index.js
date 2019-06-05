@@ -10,36 +10,36 @@ const server = app.listen(port, () => console.log(`listening on port ${port}...`
 const io = socketIo.listen(server)
 
 let game = {
-  players: {
-    player1: {
-      userName: null,
-      clientId: null,
+  players: [
+    {
+      userName: 'Player1',
+      clientId: 'kfjvncwijn76s8c6dfc',
       position: 1,
-      active: false,
-      avatar: ''
+      active: true,
+      avatar: 'http://avatars.adorable.io/avatars/200/Player1'
     },
-    player2: {
-      userName: null,
-      clientId: null,
+    {
+      userName: 'Player2',
+      clientId: 'whfbkajfbek6574dacs',
       position: 1,
-      active: false,
-      avatar: ''
+      active: true,
+      avatar: 'http://avatars.adorable.io/avatars/200/Player2'
     },
-    player3: {
-      userName: null,
-      clientId: null,
+    {
+      userName: 'Player3',
+      clientId: 'fwjhcvk765a64547acc',
       position: 1,
-      active: false,
-      avatar: ''
+      active: true,
+      avatar: 'http://avatars.adorable.io/avatars/200/Player3'
     },
-    player4: {
-      userName: null,
-      clientId: null,
+    {
+      userName: 'Player4',
+      clientId: 'sfcjzgabdf7865867zsc',
       position: 1,
-      active: false,
-      avatar: ''
+      active: true,
+      avatar: 'http://avatars.adorable.io/avatars/200/Player4'
     },
-  },
+  ],
   status: {
     gameStart: false,
     gameEnd: false,
@@ -82,11 +82,12 @@ function routing (dispatch) {
     response.status(201).send('logging in')
     dispatch({board: {}})
   })
-
+// Start Game: Generate board, send players, change game status
   router.post('/game', (request, response) => {
     console.log('hello')
     board = generateGame()
-    console.log(board)
+    game.status.gameStart = true
+    game.status.currentPlayer = Math.floor(Math.random() * game.players.length)
     response.status(201).send(board)
     dispatch({ board: board, game: game })
   })
