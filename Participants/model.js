@@ -15,10 +15,10 @@ const Participant = sequelize.define ('participants', {
   score : {
     type: Sequelize.NUMBER,
   },
-avatarId :{
-  type: Sequelize.INTEGER,
-  field: 'avatar_id'
-}
+  avatarId :{
+    type: Sequelize.INTEGER,
+    field: 'avatar_id'
+  }
 },
 {
   timestamps: false,
