@@ -1,8 +1,10 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const boardRouter = require('./Board/routes')
 const socketIo = require('socket.io')
-const generateGame = require('./Game-board/dispatcher')
+const playersRouter = require('./Players/routes')
+const cors = require('cors')
+
+
 
 const app = express()
 const port = 4000
@@ -51,8 +53,8 @@ let board = {
     pits: [],
     portals: [],
 }
-
 const rollDice = () => Math.ceil(Math.random() * 6)
+//const gameRouter = routing(dispatch, game)
 
 function dispatcher (io) {
   return function dispatch (payload) {
@@ -66,6 +68,7 @@ function dispatcher (io) {
 }
 
 const dispatch = dispatcher(io)
+
 function routing (dispatch) {
   const router = express.Router()
 
@@ -77,7 +80,7 @@ function routing (dispatch) {
     response.status(201).send('rolled!')
   })
 
-  router.post('./login', (request, response) => {
+  router.post('/login', (request, response) => {
     console.log('login')
     response.status(201).send('logging in')
     dispatch({board: {}})
@@ -95,12 +98,15 @@ function routing (dispatch) {
   return router
 }
 
-const gameRouter = routing(dispatch, game)
 
 app
+.use(cors())
 .use(bodyParser.json())
-.use(boardRouter)
-.use(gameRouter)
+.use(playersRouter)
+
+
+
+
 
 io.on(
   'connection',
