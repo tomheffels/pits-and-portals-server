@@ -1,21 +1,26 @@
 const Sequelize = require('sequelize')
 const sequelize = require('../db')
+const Game = require('../Games')
 
-const Board = sequelize.define ('Board', {
-  X: {
-    type: Sequelize.INTEGER,
+const Board = sequelize.define ('boards', {
+  pits: {
+    type: Sequelize.ARRAY,
     allowNull: false
   },
 
-  Y: {
-    type: Sequelize.INTEGER,
+  portals: {
+    type: Sequelize.ARRAY,
     allowNull: false
-  }
+  },
+  gameId : {
+    type: Sequelize.INTEGER,
+    field: 'game_id'
+  },
 },
 {
   timestamps: false,
-  tableName: 'Board'
+  tableName: 'boards'
 })
 
-
+Board.belongsTo(Game)
 module.exports = Board

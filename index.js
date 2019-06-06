@@ -1,10 +1,11 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const boardRouter = require('./Board/routes')
 const socketIo = require('socket.io')
 const generateGame = require('./Game-board/dispatcher')
 const cors = require('cors')
 let {game, games, board, newGame} = require('./data')
+const playersRouter = require('./Players/routes')
+
 
 const app = express()
 const port = 4000
@@ -41,6 +42,9 @@ const checkWinner = () => {
   }
 }
 
+const rollDice = () => Math.ceil(Math.random() * 6)
+//const gameRouter = routing(dispatch, game)
+
 function dispatcher (io) {
   return function dispatch (payload) {
     const action = {
@@ -53,6 +57,7 @@ function dispatcher (io) {
 }
 
 const dispatch = dispatcher(io)
+
 function routing (dispatch) {
   const router = express.Router()
 // Roll: Roll dice, update position, check for pits/portals, check for winner
@@ -126,13 +131,15 @@ function routing (dispatch) {
   return router
 }
 
-const gameRouter = routing(dispatch, game)
 
 app
 .use(cors())
 .use(bodyParser.json())
-.use(boardRouter)
-.use(gameRouter)
+.use(playersRouter)
+
+
+
+
 
 io.on(
   'connection',
