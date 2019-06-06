@@ -17,4 +17,5 @@ const Board = sequelize.define ('Board', {
   tableName: 'Board'
 })
 
+
 module.exports = Board
