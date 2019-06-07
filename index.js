@@ -18,8 +18,6 @@ app
 .use(playersRouter)
 
 
-const rollDice = () => Math.ceil(Math.random() * 6)
-
 const checkPortals = () => {
   const {currentPlayer} = game
   const {pits, portals} = board
