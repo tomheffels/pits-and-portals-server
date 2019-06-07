@@ -5,7 +5,7 @@ const Player = require('./model')
 router.post('/players', (req, res, next) => {
   const player = {
     name: req.body.name,
-    password:req.body.password
+    clientId :req.body.clientId
   }
   Player
   .create(req.body)

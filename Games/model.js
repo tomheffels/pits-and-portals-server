@@ -10,12 +10,24 @@ const Game = sequelize.define ('games', {
   },
   winner: {
     type: Sequelize.STRING
+  },
+  currentPlayer: {
+    type: Sequelize.INTEGER,
+    field: 'current_player'
+  },
+  dice: {
+    type: Sequelize.INTEGER,
+  },
+  pits: {
+    type: Sequelize.JSON,
+  },
+  portals: {
+    type: Sequelize.JSON
   }
 },
 {
   timestamps: false,
   tableName: 'games'
-}
-)
+})
 
 module.exports = Game 

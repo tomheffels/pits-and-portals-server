@@ -24,19 +24,4 @@ const generateGame = () => {
   return {pits: pits, portals: portals}
 }
 
-// function dispatchBoard () {
-//   const action = {
-//     type: 'board',
-//     pits,
-//     portals
-//   }
-//   io.emit('action', action)
-// }
-
-// app.put('/game/:id', (req, res, next) => {
-//   const {pits, portals} = req.body
-//   Game
-//     .findByPk(req.params.id)
-// })
-
 module.exports = generateGame
